@@ -1,13 +1,26 @@
-Primero
-    - Necesito que mi app trackee mi entrenamiento diario (ej)
-        Lunes 18/03
-            pull up    bw   5 series    8 rep   6 rps  6 rps  4 rps  2rps
-            exercise   kg    sets        reps
-
-me deje entender
+workout
+    -- fecha  (que luego se transformara en dia)
+    -- nombre
+    -- lista de ejercicios  (que se ejecuto durante el dia)  (ya se creara una tabla de exercise)
 
 
-por ahora eso
 
 
-vamonooooo
+exercise
+    -- nombre
+    -- tutorial
+    -- muscles que trabajara
+
+nombre varchar
+tutorial al final será una url de youtube
+
+
+muscle
+    -- musculo
+
+exercise_log
+    -- exercise_subid  (obtendremos el nombre del exercise)
+    -- peso
+    -- serie
+    -- repeticiones
+    -- user id
