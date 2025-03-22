@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('exercise_logs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('exercise_id')->constrained()->onDelete('cascade'); // Relación con exercises
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Relación con users
+            $table->decimal('weight', 5, 2); // Peso en KG (puedes ajustar decimales)
+            $table->integer('sets'); // Número de series
+            $table->string('repetitions'); // Ejemplo: "15,15,15,15"
             $table->timestamps();
         });
     }
