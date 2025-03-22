@@ -5,7 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Exercise;
 
-class ExerciseManager extends Component
+class Exercises extends Component
 {
     public $name, $tutorial, $exerciseId;
     public $isEditing = false;

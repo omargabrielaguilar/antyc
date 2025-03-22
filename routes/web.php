@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ExerciseManagerController;
+use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\WorkoutController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +23,8 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/exercises', [ExerciseManagerController::class, 'index'])->name('exercises.index');
-    Route::post('/exercises', [ExerciseManagerController::class, 'store'])->name('exercises.store');
+    Route::get('/exercises', [ExerciseController::class, 'index'])->name('exercises.index');
+    Route::post('/exercises', [ExerciseController::class, 'store'])->name('exercises.store');
 });
 
 
