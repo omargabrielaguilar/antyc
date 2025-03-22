@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Workout;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller; // Asegúrate de importar esto
+use App\Http\Controllers\Controller;
 
 class WorkoutController extends Controller
 {
     public function index()
     {
         $workouts = Auth::user()->workouts()->latest()->get();
-        return view('workouts.index', compact('workouts'));
+        return view('livewire.workouts.index', compact('workouts'));
     }
 
     public function store(Request $request)
