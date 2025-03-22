@@ -9,7 +9,7 @@ workout
 exercise
     -- nombre
     -- tutorial
-    -- muscles que trabajara
+    -- muscles que trabajara que extienda de muscle como belongs to o hasmany???  pero será un objeto porque seleccionare los musculos que trabajo el exercise
 
 nombre varchar
 tutorial al final será una url de youtube
