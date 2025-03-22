@@ -10,4 +10,9 @@ class Muscle extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'group'];
+
+    public function exercises()
+    {
+        return $this->belongsToMany(Exercise::class, 'exercise_muscle');
+    }
 }
