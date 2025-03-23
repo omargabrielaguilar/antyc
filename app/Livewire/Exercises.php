@@ -41,8 +41,12 @@ class Exercises extends Component
         $this->exerciseId = $exercise->id;
         $this->name = $exercise->name;
         $this->tutorial = $exercise->tutorial;
-        $this->selectedMuscles = $exercise->muscles()->pluck('id')->toArray();
+
+        $this->selectedMuscles = $exercise->muscles->pluck('id')->toArray();
+
         $this->isEditing = true;
+
+        $this->dispatch('updateMusclesSelect', $this->selectedMuscles);
     }
 
     public function deleteExercise($id)
@@ -54,7 +58,6 @@ class Exercises extends Component
     public function resetForm()
     {
         $this->reset(['name', 'tutorial', 'exerciseId', 'selectedMuscles', 'isEditing']);
-        $this->selectedMuscles = []; // Asegurar que se limpia en PHP
     }
 
     public function render()
@@ -63,6 +66,7 @@ class Exercises extends Component
             'exercises' => Exercise::latest()->get(),
             'muscles' => Muscle::all(), // Asegurándonos de obtener los músculos
             'isEditing' => $this->isEditing,
+            'selectedMuscles' => $this->selectedMuscles, // Agregar esto para debug
         ]);
     }
 }

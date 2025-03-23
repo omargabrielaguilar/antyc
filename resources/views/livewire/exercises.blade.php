@@ -14,12 +14,13 @@
                     <select id="muscles-select" multiple>
                         @foreach ($muscles as $muscle)
                             <option value="{{ $muscle->id }}"
-                                {{ in_array($muscle->id, $selectedMuscles) ? 'selected' : '' }}>
+                                {{ in_array($muscle->id, $selectedMuscles ?? []) ? 'selected' : '' }}>
                                 {{ $muscle->name }}
                             </option>
                         @endforeach
                     </select>
                 </div>
+
 
                 <x-button primary type="submit">{{ $isEditing ? 'Actualizar' : 'Guardar' }}</x-button>
                 @if ($isEditing)
@@ -72,14 +73,33 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         let select = new TomSelect("#muscles-select", {
-            maxItems: 3, // Máximo 3 músculos
+            maxItems: 3,
             plugins: ['remove_button'],
             persist: false,
             create: false
         });
 
         select.on('change', function() {
-            @this.set('selectedMuscles', select.getValue()); // Sincroniza con Livewire
+            @this.set('selectedMuscles', select.getValue());
+        });
+
+        Livewire.on('updateMusclesSelect', (muscles) => {
+            console.log("Muscles antes de procesar:", muscles);
+            if (Array.isArray(muscles[0])) {
+                muscles = muscles[0]; // Extraer el array interno
+            }
+
+            console.log("Muscles después de procesar:", muscles);
+
+            select.clear();
+            muscles.forEach(muscle => {
+                select.addOption({
+                    value: muscle,
+                    text: muscle
+                });
+            });
+
+            select.setValue(muscles);
         });
 
     });
