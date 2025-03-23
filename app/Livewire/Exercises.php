@@ -58,6 +58,9 @@ class Exercises extends Component
     public function resetForm()
     {
         $this->reset(['name', 'tutorial', 'exerciseId', 'selectedMuscles', 'isEditing']);
+
+        // Enviar evento para vaciar el select en el frontend
+        $this->dispatch('updateMusclesSelect', []);
     }
 
     public function render()
