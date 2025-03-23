@@ -1,3 +1,16 @@
+Program
+    -- name
+    -- duracion (12 a 15 semanas) int
+    -- dias a la semana
+    -- esquema semanal
+
+programa_semanal
+    -- dia (puede ser Lunes, Martes, Miercoles)
+    -- exercise list
+    --  sets, reps, rpe , rest
+
+
+
 workout
     -- fecha  (que luego se transformara en dia)
     -- nombre
