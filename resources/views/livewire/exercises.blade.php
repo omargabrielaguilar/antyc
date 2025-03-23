@@ -1,4 +1,4 @@
-<div class="max-w-6xl py-6 mx-auto">
+<div class="py-6 mx-auto max-w-7xl">
     <x-notifications />
     <x-card>
         <x-slot name="title">{{ $isEditing ? 'Editar Ejercicio' : 'Nuevo Ejercicio' }}</x-slot>

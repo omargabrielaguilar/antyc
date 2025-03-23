@@ -9,7 +9,7 @@ class ExerciseLog extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['exercise_id', 'user_id', 'weight', 'sets', 'repetitions'];
+    protected $fillable = ['workout_exercise_id', 'weight', 'sets', 'repetitions', 'rpe'];
 
     public function exercise()
     {
