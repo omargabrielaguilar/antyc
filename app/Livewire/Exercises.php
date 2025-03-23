@@ -5,9 +5,12 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Exercise;
 use App\Models\Muscle;
+use Livewire\WithPagination;
 
 class Exercises extends Component
 {
+    use WithPagination;
+
     public $name, $tutorial, $exerciseId, $selectedMuscles = [];
     public $isEditing = false;
 
@@ -66,7 +69,7 @@ class Exercises extends Component
     public function render()
     {
         return view('livewire.exercises', [
-            'exercises' => Exercise::latest()->get(),
+            'exercises' => Exercise::latest()->paginate(10),
             'muscles' => Muscle::all(), // Asegurándonos de obtener los músculos
             'isEditing' => $this->isEditing,
             'selectedMuscles' => $this->selectedMuscles, // Agregar esto para debug

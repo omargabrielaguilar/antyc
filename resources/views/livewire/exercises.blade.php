@@ -68,6 +68,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="mt-4">
+            {{ $exercises->links() }}
+        </div>
     </x-card>
 </div>
 <script>
