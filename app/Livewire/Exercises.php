@@ -4,25 +4,31 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Exercise;
+use App\Models\Muscle;
 
 class Exercises extends Component
 {
-    public $name, $tutorial, $exerciseId;
+    public $name, $tutorial, $exerciseId, $selectedMuscles = [];
     public $isEditing = false;
 
     protected $rules = [
         'name' => 'required|string|max:255',
-        'tutorial' => 'nullable|url'
+        'tutorial' => 'nullable|url',
+        'selectedMuscles' => 'array|max:3',
+        'selectedMuscles.*' => 'exists:muscles,id'
     ];
 
     public function saveExercise()
     {
+        $this->selectedMuscles = (array) $this->selectedMuscles; // Asegurar que siempre sea un array
         $this->validate();
 
-        Exercise::updateOrCreate(
+        $exercise = Exercise::updateOrCreate(
             ['id' => $this->exerciseId],
             ['name' => $this->name, 'tutorial' => $this->tutorial]
         );
+
+        $exercise->muscles()->sync($this->selectedMuscles);
 
         session()->flash('success', $this->exerciseId ? 'Ejercicio actualizado' : 'Ejercicio creado');
 
@@ -35,6 +41,7 @@ class Exercises extends Component
         $this->exerciseId = $exercise->id;
         $this->name = $exercise->name;
         $this->tutorial = $exercise->tutorial;
+        $this->selectedMuscles = $exercise->muscles()->pluck('id')->toArray();
         $this->isEditing = true;
     }
 
@@ -46,13 +53,14 @@ class Exercises extends Component
 
     public function resetForm()
     {
-        $this->reset(['name', 'tutorial', 'exerciseId', 'isEditing']);
+        $this->reset(['name', 'tutorial', 'exerciseId', 'selectedMuscles', 'isEditing']);
     }
 
     public function render()
     {
         return view('livewire.exercises', [
             'exercises' => Exercise::latest()->get(),
+            'muscles' => Muscle::all(), // Asegurándonos de obtener los músculos
             'isEditing' => $this->isEditing,
         ]);
     }

@@ -9,6 +9,16 @@
                 <x-input wire:model="name" label="Nombre del ejercicio" required />
                 <x-input wire:model="tutorial" label="Tutorial (URL opcional)" type="url" />
 
+                <div>
+                    <label>Músculos trabajados</label>
+                    @foreach ($muscles as $muscle)
+                        <label>
+                            <input type="checkbox" wire:model="selectedMuscles" value="{{ $muscle->id }}">
+                            {{ $muscle->name }}
+                        </label>
+                    @endforeach
+                </div>
+
                 <x-button primary type="submit">{{ $isEditing ? 'Actualizar' : 'Guardar' }}</x-button>
                 @if ($isEditing)
                     <x-button secondary wire:click="resetForm">Cancelar</x-button>
