@@ -54,6 +54,7 @@ class Exercises extends Component
     public function resetForm()
     {
         $this->reset(['name', 'tutorial', 'exerciseId', 'selectedMuscles', 'isEditing']);
+        $this->selectedMuscles = []; // Asegurar que se limpia en PHP
     }
 
     public function render()

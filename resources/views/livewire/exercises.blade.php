@@ -9,14 +9,16 @@
                 <x-input wire:model="name" label="Nombre del ejercicio" required />
                 <x-input wire:model="tutorial" label="Tutorial (URL opcional)" type="url" />
 
-                <div>
-                    <label>Músculos trabajados</label>
-                    @foreach ($muscles as $muscle)
-                        <label>
-                            <input type="checkbox" wire:model="selectedMuscles" value="{{ $muscle->id }}">
-                            {{ $muscle->name }}
-                        </label>
-                    @endforeach
+                <div wire:ignore class="relative">
+                    <label class="block text-sm font-medium text-gray-700">Músculos trabajados</label>
+                    <select id="muscles-select" multiple>
+                        @foreach ($muscles as $muscle)
+                            <option value="{{ $muscle->id }}"
+                                {{ in_array($muscle->id, $selectedMuscles) ? 'selected' : '' }}>
+                                {{ $muscle->name }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <x-button primary type="submit">{{ $isEditing ? 'Actualizar' : 'Guardar' }}</x-button>
@@ -36,6 +38,7 @@
                     <tr class="bg-gray-100">
                         <th class="p-2 border">Nombre</th>
                         <th class="p-2 border">Tutorial</th>
+                        <th class="p-2 border">Músculos</th>
                         <th class="p-2 border">Acciones</th>
                     </tr>
                 </thead>
@@ -51,6 +54,9 @@
                                     -
                                 @endif
                             </td>
+                            <td class="p-2 border">
+                                {{ $exercise->muscles->pluck('name')->join(', ') }}
+                            </td>
                             <td class="flex p-2 space-x-2 border">
                                 <x-button secondary wire:click="editExercise({{ $exercise->id }})">Editar</x-button>
                                 <x-button danger wire:click="deleteExercise({{ $exercise->id }})"
@@ -63,3 +69,18 @@
         </div>
     </x-card>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let select = new TomSelect("#muscles-select", {
+            maxItems: 3, // Máximo 3 músculos
+            plugins: ['remove_button'],
+            persist: false,
+            create: false
+        });
+
+        select.on('change', function() {
+            @this.set('selectedMuscles', select.getValue()); // Sincroniza con Livewire
+        });
+
+    });
+</script>
