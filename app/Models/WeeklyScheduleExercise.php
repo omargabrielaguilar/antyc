@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class WeeklySchedule extends Model
+class WeeklyScheduleExercise extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['day'];
+    protected $fillable = ['weekly_schedule_id', 'exercise_id', 'sets', 'repetitions', 'rpe'];
 
     /** @return BelongsTo<Program, WeeklySchedule>  */
     public function program()
@@ -19,9 +18,9 @@ class WeeklySchedule extends Model
         return $this->belongsTo(Program::class);
     }
 
-    /** @return HasMany<Model, WeeklySchedule>  */
+    /** @return BelongsTo<WeeklySchedule, WeeklyScheduleExercise>  */
     public function weeklyScheduleExercises()
     {
-        return $this->hasMany(WeeklyScheduleExercise::class);
+        return $this->belongsTo(WeeklySchedule::class);
     }
 }

@@ -45,6 +45,12 @@ new class extends Component {
                         {{ __('Exercise') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('programs.index')" :active="request()->routeIs('programs.index')">
+                        {{ __('Program') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

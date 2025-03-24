@@ -10,4 +10,9 @@ class Program extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'duration', 'days_per_week'];
+
+    public function weeklySchedules()
+    {
+        return $this->hasMany(WeeklySchedule::class);
+    }
 }

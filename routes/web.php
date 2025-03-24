@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ExerciseController;
+use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\WorkoutController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/exercises', [ExerciseController::class, 'index'])->name('exercises.index');
     Route::post('/exercises', [ExerciseController::class, 'store'])->name('exercises.store');
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/programs', [ProgramController::class, 'index'])->name('programs.index');
+    Route::post('/programs', [ProgramController::class, 'store'])->name('programs.store');
+});
+
 
 
 require __DIR__ . '/auth.php';
