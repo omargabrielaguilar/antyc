@@ -7,7 +7,7 @@ Program
 programa_semanal
     -- dia (puede ser Lunes, Martes, Miercoles)
     -- exercise list
-    --  sets, reps, rpe , rest
+    --  sets, reps, rpe
 
 
 
