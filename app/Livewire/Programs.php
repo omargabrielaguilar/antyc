@@ -5,9 +5,8 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Program;
 use App\Models\WeeklySchedule;
-use App\Models\WeeklyScheduleExercise;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Exercise;
-use Illuminate\Support\Facades\DB;
 
 class Programs extends Component
 {
@@ -48,6 +47,7 @@ class Programs extends Component
             'name' => $this->name,
             'duration' => $this->duration,
             'days_per_week' => $this->days_per_week,
+            'user_id' => Auth::id(),
         ]);
         $this->reset(['name', 'duration', 'days_per_week']);
         $this->loadPrograms();

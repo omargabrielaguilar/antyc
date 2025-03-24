@@ -17,16 +17,12 @@ workout
     -- lista de ejercicios  (que se ejecuto durante el dia)  (ya se creara una tabla de exercise)
 
 
-
-
-
 exercise_log
     -- exercise_subid  (obtendremos el nombre del exercise)
     -- peso
     -- serie
     -- repeticiones
     -- user id
-
 
 
 exercise
@@ -38,3 +34,8 @@ nombre varchar
 tutorial al final será una url de youtube
 muscle
     -- musculo
+
+
+
+---------------------------------------------
+1. Establecer workout un programa semanal

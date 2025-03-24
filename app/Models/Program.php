@@ -9,7 +9,7 @@ class Program extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'duration', 'days_per_week'];
+    protected $fillable = ['name', 'duration', 'days_per_week', 'user_id'];
 
     public function weeklySchedules()
     {

@@ -58,4 +58,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Exercise::class);
     }
+
+    /** @return HasMany  */
+    public function programs(): HasMany
+    {
+        return $this->hasMany(Program::class);
+    }
 }

@@ -13,7 +13,7 @@ class ProgramController extends Controller
     public function index()
     {
         $programs = Program::with('weeklySchedules.weeklyScheduleExercises.exercise')->get();
-        return view('programs.index', compact('programs'));
+        return view('livewire.programs.index', compact('programs'));
     }
 
     public function store(Request $request)
